@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nancy.control.dao.ProductionMapper">
+  <resultMap id="BaseResultMap" type="com.nancy.control.bean.Production">
+    <result column="id_production" jdbcType="VARCHAR" property="idProduction" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="product_author" jdbcType="VARCHAR" property="productAuthor" />
+    <result column="product_desc" jdbcType="VARCHAR" property="productDesc" />
+    <result column="directory" jdbcType="VARCHAR" property="directory" />
+  </resultMap>
+  <select id="getAllProduction" resultMap="BaseResultMap">
+      SELECT id_production, product_name,product_author,product_desc,directory FROM production
+  </select>
+
+  <delete id="deleteProduction" >
+    DELETE FROM production WHERE id_production = #{id}
+  </delete>
+
+  <!--<update id="updateProduction">-->
+    <!--UPDATE production SET-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+      <!--<if test="idUser != null">-->
+        <!--id_user = #{},-->
+      <!--</if>-->
+    <!--</trim>-->
+  <!--</update>-->
+</mapper>
