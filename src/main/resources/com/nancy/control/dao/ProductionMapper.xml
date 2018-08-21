@@ -1,27 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nancy.control.dao.ProductionMapper">
-  <resultMap id="BaseResultMap" type="com.nancy.control.bean.Production">
-    <result column="id_production" jdbcType="VARCHAR" property="idProduction" />
-    <result column="product_name" jdbcType="VARCHAR" property="productName" />
-    <result column="product_author" jdbcType="VARCHAR" property="productAuthor" />
-    <result column="product_desc" jdbcType="VARCHAR" property="productDesc" />
-    <result column="directory" jdbcType="VARCHAR" property="directory" />
-  </resultMap>
-  <select id="getAllProduction" resultMap="BaseResultMap">
-      SELECT id_production, product_name,product_author,product_desc,directory FROM production
-  </select>
+    <resultMap id="BaseResultMap" type="com.nancy.control.bean.Production">
+        <result column="id_production" jdbcType="VARCHAR" property="idProduction"/>
+        <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+        <result column="product_author" jdbcType="VARCHAR" property="productAuthor"/>
+        <result column="product_desc" jdbcType="VARCHAR" property="productDesc"/>
+        <result column="directory" jdbcType="VARCHAR" property="directory"/>
+    </resultMap>
 
-  <delete id="deleteProduction" >
-    DELETE FROM production WHERE id_production = #{id}
-  </delete>
+    <select id="getAllProduction" resultMap="BaseResultMap">
+        SELECT
+            id_production,
+            product_name,
+            product_author,
+            product_desc,
+            directory
+        FROM production
+    </select>
 
-  <!--<update id="updateProduction">-->
-    <!--UPDATE production SET-->
-    <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
-      <!--<if test="idUser != null">-->
-        <!--id_user = #{},-->
-      <!--</if>-->
-    <!--</trim>-->
-  <!--</update>-->
+    <select id="getProduction" resultMap="BaseResultMap">
+        SELECT
+            id_production,
+            product_name,
+            product_author,
+            product_desc,
+            directory
+        FROM production
+        WHERE id_production = #{id}
+    </select>
+
+    <delete id="deleteProduction">
+        DELETE FROM production
+        WHERE id_production = #{id}
+    </delete>
+
+    <update id="updateProduction" parameterType="com.nancy.control.bean.Production">
+        UPDATE production
+        <set>
+            <if test="productName != null">
+                product_name = #{productName}
+            </if>
+            <if test="productAuthor != null">
+                product_author = #{productAuthor}
+            </if>
+            <if test="productDesc != null">
+                product_desc = #{productDesc}
+            </if>
+        </set>
+        WHERE id_production = #{idProduction}
+    </update>
+
+    <insert id="createProduction" parameterType="com.nancy.control.bean.Production">
+        INSERT INTO production (id_production,
+        <trim suffixOverrides=",">
+            <if test="productAuthor != null">
+                product_author,
+            </if>
+            <if test="productName != null">
+                product_name,
+            </if>
+            <if test="productDesc != null">
+                product_desc,
+            </if>
+        </trim>
+        )
+        VALUES (REPLACE(UUID(), '-', ''),
+        <trim suffixOverrides=",">
+            <if test="productAuthor != null">
+                #{productAuthor},
+            </if>
+            <if test="productName != null">
+                #{productName},
+            </if>
+            <if test="productDesc != null">
+                #{productDesc},
+            </if>
+        </trim>
+        )
+    </insert>
+
 </mapper>

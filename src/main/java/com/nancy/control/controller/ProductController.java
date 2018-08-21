@@ -35,8 +35,8 @@ public class ProductController {
         return new ResponseVO("patch");
     }
 
-    @PostMapping("/products/{id}")
-    public ResponseVO createProduction(@PathVariable String id) {
+    @PostMapping("/products/create")
+    public ResponseVO createProduction(@RequestBody Production production) {
         return null;
     }
 }

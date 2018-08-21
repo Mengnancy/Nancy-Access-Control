@@ -16,6 +16,7 @@ public interface ProductionMapper {
 
     int deleteProduction(String id);
 
-    int updateProduction(String id);
+    int updateProduction(Production production);
 
+    int createProduction(Production production);
 }

@@ -35,12 +35,12 @@ public class ProductionServiceImpl implements ProductionService {
     }
 
     @Override
-    public ResponseVO updateProduction(String id) {
+    public ResponseVO updateProduction(Production production) {
         return null;
     }
 
     @Override
-    public ResponseVO createProduction(String id) {
+    public ResponseVO createProduction(Production production) {
         return null;
     }
 }

@@ -1,5 +1,6 @@
 package com.nancy.control.service;
 
+import com.nancy.control.bean.Production;
 import com.nancy.control.bean.ResponseVO;
 
 /**
@@ -14,7 +15,7 @@ public interface ProductionService {
 
     ResponseVO deleteProduction(String id);
 
-    ResponseVO updateProduction(String id);
+    ResponseVO updateProduction(Production production);
 
-    ResponseVO createProduction(String id);
+    ResponseVO createProduction(Production production);
 }
