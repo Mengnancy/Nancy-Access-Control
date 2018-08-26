@@ -1,0 +1,10 @@
+INSERT INTO `auth` (`id_auth`, `id_menu`, `id_role`, `insert_date`) VALUES ('e3011309a94311e8a9cab06ebf8005a8', '33c80b2c9fda11e8bd05b06ebf8005a8', '447665939fd611e8bd05b06ebf8005a8', '2018-8-26 23:22:37');
+INSERT INTO `auth` (`id_auth`, `id_menu`, `id_role`, `insert_date`) VALUES ('e30116f5a94311e8a9cab06ebf8005a8', '8e84e57a9fda11e8bd05b06ebf8005a8', '447665939fd611e8bd05b06ebf8005a8', '2018-8-26 23:22:37');
+INSERT INTO `auth` (`id_auth`, `id_menu`, `id_role`, `insert_date`) VALUES ('e301173ca94311e8a9cab06ebf8005a8', '8e84e88e9fda11e8bd05b06ebf8005a8', '447665939fd611e8bd05b06ebf8005a8', '2018-8-26 23:22:37');
+INSERT INTO `auth` (`id_auth`, `id_menu`, `id_role`, `insert_date`) VALUES ('e3011778a94311e8a9cab06ebf8005a8', '8e84e8d89fda11e8bd05b06ebf8005a8', '447665939fd611e8bd05b06ebf8005a8', '2018-8-26 23:22:37');
+INSERT INTO `auth` (`id_auth`, `id_menu`, `id_role`, `insert_date`) VALUES ('e30117a3a94311e8a9cab06ebf8005a8', 'e2f897b79fda11e8bd05b06ebf8005a8', '447665939fd611e8bd05b06ebf8005a8', '2018-8-26 23:22:37');
+INSERT INTO `auth` (`id_auth`, `id_menu`, `id_role`, `insert_date`) VALUES ('e30117c8a94311e8a9cab06ebf8005a8', 'e2f89ad49fda11e8bd05b06ebf8005a8', '447665939fd611e8bd05b06ebf8005a8', '2018-8-26 23:22:37');
+INSERT INTO `auth` (`id_auth`, `id_menu`, `id_role`, `insert_date`) VALUES ('e30117eda94311e8a9cab06ebf8005a8', 'e2f89b219fda11e8bd05b06ebf8005a8', '447665939fd611e8bd05b06ebf8005a8', '2018-8-26 23:22:37');
+INSERT INTO `auth` (`id_auth`, `id_menu`, `id_role`, `insert_date`) VALUES ('e3011853a94311e8a9cab06ebf8005a8', 'e2f89b659fda11e8bd05b06ebf8005a8', '447665939fd611e8bd05b06ebf8005a8', '2018-8-26 23:22:37');
+INSERT INTO `auth` (`id_auth`, `id_menu`, `id_role`, `insert_date`) VALUES ('e301187ea94311e8a9cab06ebf8005a8', 'f1c0f2db9fd911e8bd05b06ebf8005a8', '447665939fd611e8bd05b06ebf8005a8', '2018-8-26 23:22:37');
+INSERT INTO `auth` (`id_auth`, `id_menu`, `id_role`, `insert_date`) VALUES ('e30118a0a94311e8a9cab06ebf8005a8', 'f1c0f4ae9fd911e8bd05b06ebf8005a8', '447665939fd611e8bd05b06ebf8005a8', '2018-8-26 23:22:37');
