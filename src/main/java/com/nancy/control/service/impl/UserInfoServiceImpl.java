@@ -21,11 +21,13 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public UserInfo findByUsername(String userName) {
         UserInfo userInfo = userMapper.findUser(userName);
-        userInfo.setRoleList(userMapper.findRoleByUser(userInfo.getIdUser()));
-        userInfo.getRoleList().stream().forEach(sysRole -> {
-            List<Menu> permission = userMapper.findPermissionByRole(sysRole.getIdRole());
-            sysRole.setPermissions(permission);
-        });
+        if(userInfo!=null){
+            userInfo.setRoleList(userMapper.findRoleByUser(userInfo.getIdUser()));
+            userInfo.getRoleList().stream().forEach(sysRole -> {
+                List<Menu> permission = userMapper.findPermissionByRole(sysRole.getIdRole());
+                sysRole.setPermissions(permission);
+            });
+        }
         return userInfo;
     }
 }

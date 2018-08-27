@@ -4,10 +4,7 @@ import com.nancy.control.bean.Menu;
 import com.nancy.control.bean.SysRole;
 import com.nancy.control.bean.UserInfo;
 import com.nancy.control.service.UserInfoService;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -47,7 +44,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         UserInfo userInfo = userInfoService.findByUsername(username);
         System.out.println("----->>userInfo=" + userInfo);
         if (userInfo == null) {
-            return null;
+            throw new UnknownAccountException();
         }
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 userInfo.getUserName(), //用户名
