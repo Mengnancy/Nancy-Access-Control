@@ -5,6 +5,7 @@ import com.nancy.control.bean.SysRole;
 import com.nancy.control.bean.UserInfo;
 import com.nancy.control.service.UserInfoService;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -19,14 +20,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class MyShiroRealm extends AuthorizingRealm {
     @Autowired
     UserInfoService userInfoService;
+
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         System.out.println("权限配置-->MyShiroRealm.doGetAuthorizationInfo()");
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        UserInfo userInfo  = (UserInfo)principals.getPrimaryPrincipal();
-        for(SysRole role:userInfo.getRoleList()){
+        UserInfo userInfo = (UserInfo) principals.getPrimaryPrincipal();
+        for (SysRole role : userInfo.getRoleList()) {
             authorizationInfo.addRole(role.getRoleName());
-            for(Menu p:role.getPermissions()){
+            for (Menu p : role.getPermissions()) {
                 authorizationInfo.addStringPermission(p.getPermissionUrl());
             }
         }
@@ -52,6 +54,7 @@ public class MyShiroRealm extends AuthorizingRealm {
                 ByteSource.Util.bytes(userInfo.getCredentialsSalt()),//salt=username
                 getName()  //realm name
         );
+        System.out.println(ByteSource.Util.bytes("admin"));
         return authenticationInfo;
     }
 }
