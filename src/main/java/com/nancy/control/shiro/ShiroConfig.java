@@ -1,6 +1,7 @@
 package com.nancy.control.shiro;
 
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
 import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
@@ -21,6 +22,7 @@ public class ShiroConfig {
 
         DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
         chainDefinition.addPathDefinition("/auth/login", "anon");
+        chainDefinition.addPathDefinition("/auth/signUp", "anon");
         chainDefinition.addPathDefinition("/logout", "logout");
         chainDefinition.addPathDefinition("/**", "authc"); // need to accept POSTs from the login form
 
@@ -48,6 +50,13 @@ public class ShiroConfig {
         hashedCredentialsMatcher.setHashAlgorithmName("md5");//散列算法:这里使用MD5算法;
         hashedCredentialsMatcher.setHashIterations(2);//散列的次数，比如散列两次，相当于 md5(md5(""));
         return hashedCredentialsMatcher;
+    }
+
+    @Bean
+    public SecureRandomNumberGenerator secureRandomNumberGenerator() {
+        SecureRandomNumberGenerator secureRandomNumberGenerator = new SecureRandomNumberGenerator();
+        secureRandomNumberGenerator.setDefaultNextBytesSize(10);
+        return secureRandomNumberGenerator;
     }
 
     @Bean

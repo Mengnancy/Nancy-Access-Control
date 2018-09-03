@@ -1,11 +1,13 @@
 package com.nancy.control.controller;
 
 import com.nancy.control.bean.ResponseVO;
+import com.nancy.control.service.AuthService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,46 +22,25 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+    @Autowired
+    AuthService authService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseVO login(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest request) {
-
-        String msg = "login";
-        // 创建Subject实例
-        Subject currentUser = SecurityUtils.getSubject();
-
-        // 将用户名及密码封装到UsernamePasswordToken
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
-
-        try {
-            currentUser.login(token);
-            // 判断当前用户是否登录
-            if (currentUser.isAuthenticated() == true) {
-                return new ResponseVO(msg);
-            }
-        } catch (Exception exception) {
-            if (exception != null) {
-                if (UnknownAccountException.class.getName().equals(exception)) {
-                    System.out.println("UnknownAccountException -- > 账号不存在：");
-                    msg = "UnknownAccountException -- > 账号不存在：";
-                } else if (IncorrectCredentialsException.class.getName().equals(exception)) {
-                    System.out.println("IncorrectCredentialsException -- > 密码不正确：");
-                    msg = "IncorrectCredentialsException -- > 密码不正确：";
-                } else if ("kaptchaValidateFailed".equals(exception)) {
-                    System.out.println("kaptchaValidateFailed -- > 验证码错误");
-                    msg = "kaptchaValidateFailed -- > 验证码错误";
-                } else {
-                    msg = "else >> " + exception;
-                    System.out.println("else -- >" + exception);
-                }
-            }
-        }
-        return new ResponseVO(0, msg);
+        return authService.login(username, password);
     }
 
     @RequestMapping(value = "/logout")
     public ResponseVO logout() {
+        Subject currentUser = SecurityUtils.getSubject();
+        if (currentUser.isAuthenticated() == true) {
+            currentUser.logout();
+        }
+        return new ResponseVO("退出登录成功");
+    }
 
-        return null;
+    @RequestMapping(value = "/signUp", method = RequestMethod.POST)
+    public ResponseVO singUp(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest request) {
+        return authService.signUp(username, password);
     }
 }

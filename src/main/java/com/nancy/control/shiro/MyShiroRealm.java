@@ -5,7 +5,6 @@ import com.nancy.control.bean.SysRole;
 import com.nancy.control.bean.UserInfo;
 import com.nancy.control.service.UserInfoService;
 import org.apache.shiro.authc.*;
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -25,11 +24,13 @@ public class MyShiroRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         System.out.println("权限配置-->MyShiroRealm.doGetAuthorizationInfo()");
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        UserInfo userInfo = (UserInfo) principals.getPrimaryPrincipal();
+        String username = (String) principals.getPrimaryPrincipal();
+        UserInfo userInfo = userInfoService.findByUsername(username);
         for (SysRole role : userInfo.getRoleList()) {
             authorizationInfo.addRole(role.getRoleName());
             for (Menu p : role.getPermissions()) {
-                authorizationInfo.addStringPermission(p.getPermissionUrl());
+                if (p.getPermissionUrl() != null)
+                    authorizationInfo.addStringPermission(p.getPermissionUrl());
             }
         }
         return authorizationInfo;

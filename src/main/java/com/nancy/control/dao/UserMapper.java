@@ -18,4 +18,6 @@ public interface UserMapper {
     List<SysRole> findRoleByUser(String id);
 
     List<Menu> findPermissionByRole(String id);
+
+    int insertUser(UserInfo userInfo);
 }

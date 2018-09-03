@@ -50,4 +50,14 @@
         WHERE a.id_role = #{id}
               AND a.id_menu = m.id_menu
     </select>
+
+    <insert id="insertUser" parameterType="com.nancy.control.bean.UserInfo">
+        INSERT INTO user (id_user, user_name, user_password, credentials_salt, insert_date) VALUES (
+            REPLACE(UUID(), '-', ''),
+            #{userName},
+            #{userPassword},
+            #{credentialsSalt},
+            now()
+        )
+    </insert>
 </mapper>

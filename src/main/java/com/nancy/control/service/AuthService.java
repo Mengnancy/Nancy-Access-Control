@@ -9,4 +9,5 @@ import com.nancy.control.bean.ResponseVO;
 public interface AuthService {
     ResponseVO login(String name, String password);
     ResponseVO logout();
+    ResponseVO signUp(String name, String password);
 }
