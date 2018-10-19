@@ -34,7 +34,10 @@ public class AuthServiceImpl implements AuthService {
         // 创建Subject实例
         Subject currentUser = SecurityUtils.getSubject();
 
-        // 将用户名及密码封装到UsernamePasswordToken
+        /**
+         * 将用户名及密码封装到UsernamePasswordToken
+         * 如果有用户信息类也可以继承这个类实现自己的方法
+         */
         UsernamePasswordToken token = new UsernamePasswordToken(name, password);
 
         try {

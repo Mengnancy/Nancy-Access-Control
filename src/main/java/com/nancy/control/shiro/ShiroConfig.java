@@ -28,6 +28,7 @@ public class ShiroConfig {
         DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
         chainDefinition.addPathDefinition("/auth/login", "anon");
         chainDefinition.addPathDefinition("/auth/signUp", "anon");
+        chainDefinition.addPathDefinition("/download", "anon");
         chainDefinition.addPathDefinition("/logout", "logout");
         chainDefinition.addPathDefinition("/**", "authc"); // need to accept POSTs from the login form
 
@@ -44,8 +45,7 @@ public class ShiroConfig {
 
     /**
      * 凭证匹配器
-     * （由于我们的密码校验交给Shiro的SimpleAuthenticationInfo进行处理了
-     * ）
+     * （由于我们的密码校验交给Shiro的SimpleAuthenticationInfo进行处理了）
      *
      * @return
      */

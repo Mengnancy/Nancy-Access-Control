@@ -24,7 +24,10 @@ public class MyShiroRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         System.out.println("权限配置-->MyShiroRealm.doGetAuthorizationInfo()");
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+
+        //这里返回的内容实际就是UsernamePasswordToken中getPrincipal方法的返回值，这里是用户名，自己实现可以自己控制
         String username = (String) principals.getPrimaryPrincipal();
+
         UserInfo userInfo = userInfoService.findByUsername(username);
         for (SysRole role : userInfo.getRoleList()) {
             authorizationInfo.addRole(role.getRoleName());
@@ -41,11 +44,12 @@ public class MyShiroRealm extends AuthorizingRealm {
         System.out.println("MyShiroRealm.doGetAuthenticationInfo()");
         //获取用户的输入的账号.
         String username = (String) token.getPrincipal();
-        System.out.println(token.getCredentials());
+
         //通过username从数据库中查找 User对象，如果找到，没找到.
         //实际项目中，这里可以根据实际情况做缓存，如果不做，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法
         UserInfo userInfo = userInfoService.findByUsername(username);
         System.out.println("----->>userInfo=" + userInfo);
+
         if (userInfo == null) {
             throw new UnknownAccountException();
         }
@@ -55,7 +59,7 @@ public class MyShiroRealm extends AuthorizingRealm {
                 ByteSource.Util.bytes(userInfo.getCredentialsSalt()),//salt=username
                 getName()  //realm name
         );
-        System.out.println(ByteSource.Util.bytes("admin"));
+
         return authenticationInfo;
     }
 }
