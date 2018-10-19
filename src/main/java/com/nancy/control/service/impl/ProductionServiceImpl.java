@@ -26,21 +26,26 @@ public class ProductionServiceImpl implements ProductionService {
 
     @Override
     public ResponseVO getProduction(String id) {
-        return null;
+        Production production = productionMapper.getProduction(id);
+        return new ResponseVO(production);
     }
 
     @Override
     public ResponseVO deleteProduction(String id) {
-        return null;
+        int result = productionMapper.deleteProduction(id);
+        return new ResponseVO(result);
+
     }
 
     @Override
     public ResponseVO updateProduction(Production production) {
-        return null;
+        int result = productionMapper.updateProduction(production);
+        return new ResponseVO(result);
     }
 
     @Override
     public ResponseVO createProduction(Production production) {
-        return null;
+        int result = productionMapper.createProduction(production);
+        return new ResponseVO(result);
     }
 }

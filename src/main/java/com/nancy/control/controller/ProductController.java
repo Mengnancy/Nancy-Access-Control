@@ -25,24 +25,24 @@ public class ProductController {
     @DeleteMapping("/products/{id}")
     @RequiresPermissions("product[delete]")
     public ResponseVO deleteProduction(@PathVariable String id) {
-        return new ResponseVO("DELETE");
+        return productionService.deleteProduction(id);
     }
 
     @GetMapping("/products/{id}")
     @RequiresPermissions("product[list]")
     public ResponseVO getProduction(@PathVariable String id) {
-        return new ResponseVO("GET");
+        return productionService.getProduction(id);
     }
 
     @PatchMapping("/products/{id}")
     @RequiresPermissions("product[edit]")
-    public ResponseVO updateProduction(@PathVariable String id, @RequestBody Production production) {
-        return new ResponseVO("patch");
+    public ResponseVO updateProduction(@RequestBody Production production) {
+        return productionService.updateProduction(production);
     }
 
     @PostMapping("/products/create")
     @RequiresPermissions("product[upload]")
     public ResponseVO createProduction(@RequestBody Production production) {
-        return null;
+        return productionService.createProduction(production);
     }
 }
