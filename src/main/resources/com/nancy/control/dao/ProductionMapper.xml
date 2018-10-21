@@ -19,6 +19,16 @@
         FROM production
     </select>
 
+    <select id="getPageProdution" resultMap="BaseResultMap">
+        SELECT
+            id_production,
+            product_name,
+            product_author,
+            product_desc,
+            directory
+        FROM production
+    </select>
+
     <select id="getProduction" resultMap="BaseResultMap">
         SELECT
             id_production,

@@ -1,5 +1,6 @@
 package com.nancy.control.service.impl;
 
+import com.github.pagehelper.PageInfo;
 import com.nancy.control.bean.Production;
 import com.nancy.control.bean.ResponseVO;
 import com.nancy.control.dao.ProductionMapper;
@@ -22,6 +23,12 @@ public class ProductionServiceImpl implements ProductionService {
     public ResponseVO getAllProduction() {
         List<Production> all = productionMapper.getAllProduction();
         return new ResponseVO(all);
+    }
+
+    @Override
+    public ResponseVO getPageProduction() {
+        PageInfo<Production> pageInfo = new PageInfo<>(productionMapper.getPageProdution());
+        return new ResponseVO(pageInfo);
     }
 
     @Override

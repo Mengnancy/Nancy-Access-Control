@@ -1,5 +1,6 @@
 package com.nancy.control.dao;
 
+import com.github.pagehelper.Page;
 import com.nancy.control.bean.Production;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -11,6 +12,8 @@ import java.util.List;
 public interface ProductionMapper {
 
     List<Production> getAllProduction();
+
+    Page<Production> getPageProdution();
 
     Production getProduction(String id);
 

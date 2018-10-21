@@ -14,3 +14,6 @@ spring:
 mybatis:
     mapper-locations: classpath:com/nancy/control/dao/*.xml
     mybatis.type-aliases-package: com.nancy.control.bean
+pagehelper:
+  helperDialect: mysql
+  reasonable: true

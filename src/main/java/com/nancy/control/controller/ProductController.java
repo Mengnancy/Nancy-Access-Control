@@ -1,5 +1,6 @@
 package com.nancy.control.controller;
 
+import com.github.pagehelper.PageHelper;
 import com.nancy.control.bean.Production;
 import com.nancy.control.bean.ResponseVO;
 import com.nancy.control.service.ProductionService;
@@ -20,6 +21,13 @@ public class ProductController {
     @RequiresPermissions("product[list]")//权限管理;
     public ResponseVO listProduction() {
         return productionService.getAllProduction();
+    }
+
+    @GetMapping("/pageProducts")
+    @RequiresPermissions("product[list]")//权限管理;
+    public ResponseVO listProdutionPage(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "2") int pageSize) {
+        PageHelper.startPage(pageNo, pageSize);
+        return productionService.getPageProduction();
     }
 
     @DeleteMapping("/products/{id}")

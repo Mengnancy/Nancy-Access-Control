@@ -11,6 +11,8 @@ public interface ProductionService {
 
     ResponseVO getAllProduction();
 
+    ResponseVO getPageProduction();
+
     ResponseVO getProduction(String id);
 
     ResponseVO deleteProduction(String id);
