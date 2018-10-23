@@ -42,9 +42,10 @@ public class ProductController {
         return productionService.getProduction(id);
     }
 
-    @PatchMapping("/products/{id}")
+    @PatchMapping("/products")
     @RequiresPermissions("product[edit]")
     public ResponseVO updateProduction(@RequestBody Production production) {
+        System.out.println("product[edit]");
         return productionService.updateProduction(production);
     }
 

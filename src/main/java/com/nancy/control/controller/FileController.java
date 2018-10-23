@@ -19,7 +19,7 @@ import java.io.*;
 public class FileController {
     @GetMapping("/download")
     public void download(HttpServletResponse response) {
-        File file = new File("/Users/lingxin/Downloads/lanan-mac-1.2.0.zip");
+        File file = new File("D:\\mytest");
         OutputStream os = null;
 
         BufferedInputStream bis = null;
@@ -54,7 +54,7 @@ public class FileController {
             return new ResponseVO(-1, "上传文件为空");
         }
         try {
-            File newFile = new File("/Users/lingxin/Downloads" + file.getOriginalFilename());
+            File newFile = new File("D:\\mytest\\" + file.getOriginalFilename());
             file.transferTo(newFile);
         } catch (IOException e) {
             System.err.println("创建文件失败");
@@ -75,7 +75,7 @@ public class FileController {
             return new ResponseVO(-1, "没有选中上传文件");
         }
 
-        String path = "/Users/lingxin/Downloads/";
+        String path = "D:\\mytest\\";
 
         for (MultipartFile file : files) {
             System.err.println("文件是否为空 ： " + file.isEmpty());
@@ -86,7 +86,6 @@ public class FileController {
             File newFile = new File(path + file.getOriginalFilename());
             try {
                 file.transferTo(newFile);
-//                FileUtils.copyInputStreamToFile(file.getInputStream(), newFile);
             } catch (IOException e) {
                 System.err.println(file.getOriginalFilename()+"传输失败");
             }
