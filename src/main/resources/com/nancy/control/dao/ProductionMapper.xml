@@ -17,9 +17,10 @@
             product_desc,
             directory
         FROM production
+        WHERE VALID = 1
     </select>
 
-    <select id="getPageProdution" resultMap="BaseResultMap">
+    <select id="getPageProduction" resultMap="BaseResultMap">
         SELECT
             id_production,
             product_name,
@@ -27,6 +28,7 @@
             product_desc,
             directory
         FROM production
+        WHERE VALID = 1
     </select>
 
     <select id="getProduction" resultMap="BaseResultMap">
@@ -38,10 +40,12 @@
             directory
         FROM production
         WHERE id_production = #{id}
+              AND VALID = 1
     </select>
 
     <delete id="deleteProduction">
-        DELETE FROM production
+        UPDATE production
+        SET valid = 0
         WHERE id_production = #{id}
     </delete>
 
@@ -58,6 +62,13 @@
                 product_desc = #{productDesc},
             </if>
         </set>
+        WHERE id_production = #{idProduction}
+    </update>
+
+    <update id="updateDirectory" parameterType="com.nancy.control.bean.Production">
+        UPDATE production
+        SET
+            directory = #{directory}
         WHERE id_production = #{idProduction}
     </update>
 

@@ -51,4 +51,12 @@ public class ProductionTest {
 
         productionMapper.updateProduction(production);
     }
+    @Test
+    public void updateDirectoryTest(){
+        Production production = new Production();
+        production.setIdProduction("3df3423ed79911e88cbbb06ebf8005a8");
+        production.setDirectory("D:\\");
+
+        productionMapper.updateDirectory(production);
+    }
 }

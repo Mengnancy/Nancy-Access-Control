@@ -13,7 +13,7 @@ public interface ProductionMapper {
 
     List<Production> getAllProduction();
 
-    Page<Production> getPageProdution();
+    Page<Production> getPageProduction();
 
     Production getProduction(String id);
 
@@ -22,4 +22,6 @@ public interface ProductionMapper {
     int updateProduction(Production production);
 
     int createProduction(Production production);
+
+    int updateDirectory(Production production);
 }

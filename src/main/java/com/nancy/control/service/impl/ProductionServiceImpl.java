@@ -27,7 +27,7 @@ public class ProductionServiceImpl implements ProductionService {
 
     @Override
     public ResponseVO getPageProduction() {
-        PageInfo<Production> pageInfo = new PageInfo<>(productionMapper.getPageProdution());
+        PageInfo<Production> pageInfo = new PageInfo<>(productionMapper.getPageProduction());
         return new ResponseVO(pageInfo);
     }
 
